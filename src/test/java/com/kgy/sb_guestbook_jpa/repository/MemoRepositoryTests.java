@@ -23,6 +23,7 @@ public class MemoRepositoryTests {
             .registDate(new Timestamp(System.currentTimeMillis()))
             .build();
 
+        // newMemo 에는 PK가 없다.
         // 메모리에 있는 newMemo 객체를 영속적인 공간(DB)에 저장한다는 의미에서 save를 사용하여
         // insert를 시킨다.
         newMemo = memoRepository.save(newMemo); // **save되어 return된 newMemo에는 PK가 들어가있다.
@@ -37,11 +38,38 @@ public class MemoRepositoryTests {
         // Optional<> : 자바 17 버전에서 새롭게 나온거
         Optional<Memo> result = memoRepository.findById(mno);
 
-        if(result.isPresent()) {
+
+        if(result.isPresent()) { 
+            //memo 에는 PK가 있다.(이미 영속적인 공간에 저장되어있던 객체)
             Memo memo = result.get();
             System.out.println(memo.toString());
         } else {
             System.out.println("Memo not found");
+        }
+    }
+
+    @Test
+    public void updateTest() {
+
+        Long mno = 1L; 
+
+        Optional<Memo> result = memoRepository.findById(mno);
+        if(result.isPresent()) { // mno가 가지고 있는 Memo가 null이
+            Memo memo = result.get(); // memo 객체를 가져와서 그 객체의 메모내용을 변경할 수 있는 setter를 호출하여 메모 내용을 변경.
+            memo.setMemoText("update Test Memo");
+
+            memoRepository.save(memo); 
+        }
+    }
+
+
+    @Test
+    public void deleteTest() {
+        Long mno = 1L;
+
+        Optional<Memo> result = memoRepository.findById(mno);
+        if(result.isPresent()) {
+            memoRepository.deleteById(mno);
         }
     }
 }
