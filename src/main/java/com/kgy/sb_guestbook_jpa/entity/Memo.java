@@ -36,4 +36,15 @@ public class Memo {
     private String memoText;
 
     private Timestamp registDate;
+
+    // setter 만들자
+    public void setMemoText(String newMemoText) throws IllegalArgumentException {
+        if(newMemoText != null && newMemoText.length() <= 200) {
+            this.memoText = newMemoText;
+        } else {
+            throw new IllegalArgumentException("메모 내용은 200자 이하로 입력하세요.");
+            // IllegalArgumentException : 예외객체
+            // 예외 객체를 생성해서 던졌다.
+        }
+    }
 }
