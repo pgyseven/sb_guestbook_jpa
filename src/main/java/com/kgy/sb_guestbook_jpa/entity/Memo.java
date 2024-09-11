@@ -1,6 +1,6 @@
 package com.kgy.sb_guestbook_jpa.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity; // persistence : 데이터를 영구적으로 저장해서 관리하는 기술
@@ -35,5 +35,5 @@ public class Memo {
     // = 얘는 그냥 일반 컬럼이고, 크기는 200바이트를 준다. 그리고 null이 가능하지 못하도록 설정했다.
     private String memoText;
 
-    private Date registDate;
+    private Timestamp registDate;
 }
