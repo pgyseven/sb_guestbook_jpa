@@ -30,9 +30,9 @@ public class Memo {
     // IDENTITY : auto-increment처럼 동작
     private Long mno; 
 
-    @Column(length = 200, nullable = false)
     // Column 어노테이션을 이용해 컬럼명, 길이, null or not null을 지정할 수 있다.
     // = 얘는 그냥 일반 컬럼이고, 크기는 200바이트를 준다. 그리고 null이 가능하지 못하도록 설정했다.
+    @Column(length = 200, nullable = false)
     private String memoText;
 
     private Timestamp registDate;
