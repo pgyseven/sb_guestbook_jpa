@@ -2,6 +2,7 @@ package com.kgy.sb_guestbook_jpa.repository;
 
 import java.sql.Timestamp;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,4 +73,19 @@ public class MemoRepositoryTests {
             memoRepository.deleteById(mno);
         }
     }
+
+    
+    @Test
+    public void insertDummies() { // IntStream : 정수를 순서대로 나열해주는 interface
+        // 람다식 형태로 반복문을 돌려 Memo객체를 100개 만들어 insert
+        IntStream.rangeClosed(1, 100).forEach(i-> {
+            Memo newMemo = Memo.builder()
+                .memoText("더미" + i + "번째 메모")
+                .registDate(new Timestamp(System.currentTimeMillis()))
+                .build();
+            memoRepository.save(newMemo); // PK(mno)가 없으므로 jap는 save()에서 memo객체를 insert한다.
+        });
+    }
 }
+
+
