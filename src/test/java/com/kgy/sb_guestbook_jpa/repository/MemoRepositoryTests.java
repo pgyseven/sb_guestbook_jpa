@@ -7,6 +7,11 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 
 import com.kgy.sb_guestbook_jpa.entity.Memo;
 
@@ -93,6 +98,36 @@ public class MemoRepositoryTests {
         Iterable<Memo> memos = memoRepository.findAll();
         memos.forEach(System.out::println);
     }
+
+    @Test
+    public void testPagingMemo() {
+        // JPA가 내부적으로 Dialect(방언=사투리) 객체를 사용하여 연결되어있는 DataSouce의 DataBase 제품에 따른
+        // 필요 쿼리문을 호출하여 사용하도록 한다.
+        // -> DB가 바뀔 때마다 필요한 페이징 쿼리문을 유지/보수할 필요가 없다.
+
+
+        // PageRequest : Pageable 인터페이스를 구현한 구현체 클래스
+        // (페이징 시 필요한 파라메터(현재 페이지 번호, 1페이지 당 몇개씩 출력)를 담고 있는 객체)
+        Sort sort = Sort.by(Order.desc("mno"));
+        Pageable Pageable = PageRequest.of(0, 10, sort);
+
+        // Page : 현재 페이징된 데이터와 페이징을 처리할 수 있는 속성을 가지고 있는 객체이다.
+        Page<Memo> result = memoRepository.findAll(Pageable);
+
+        for(Memo m : result.getContent()) {
+            System.out.println(m.toString());
+        }
+
+        System.out.println("===========================================================================");
+        System.out.println("총 페이지 후 : " + result.getTotalPages());
+        System.out.println("현재 페이지 번호 : " + result.getNumber());
+        System.out.println("페이지 당 출력되는 데이터 수 : " + result.getSize());
+        System.out.println("다음 페이지가 있습니까? " + result.hasNext());
+        System.out.println("이전 페이지가 있습니까? " + result.hasPrevious());
+        System.out.println("시작 페이지(0번째) 입니까? " + result.isFirst());
+        System.out.println("마지막 페이지 입니까? " + result.isLast());
+    }
 }
+
 
 
