@@ -86,6 +86,13 @@ public class MemoRepositoryTests {
             memoRepository.save(newMemo); // PK(mno)가 없으므로 jap는 save()에서 memo객체를 insert한다.
         });
     }
+
+    @Test
+    public void selectAll() {
+        // findAll() : JPA에서 SQL 쿼리를 실행하여 DB에서 모든 Memo 객체를 select하는 메소드
+        Iterable<Memo> memos = memoRepository.findAll();
+        memos.forEach(System.out::println);
+    }
 }
 
 
