@@ -56,5 +56,16 @@
             [[${dto}]]
         </li>
     </ul>
+
+    <hr />
+
+    <h5>th:block을 이용하여 무의미한 태그 만들지 않기</h5>
+    <ul>
+        <th:block th:each="dto : ${list}">
+            <li>
+                [[${dto}]]
+            </li>
+        </th:block>
+    </ul>
 </body>
 </html>
