@@ -86,4 +86,12 @@ public class HomeController {
 
         return "/sample/exView";
     }
+
+    @GetMapping("/exTemplate")
+    public String exLayout() {
+
+        log.info("exTemplate~~~~~~~~~~");
+
+        return "/sample/exTemplate";
+    }
 }
