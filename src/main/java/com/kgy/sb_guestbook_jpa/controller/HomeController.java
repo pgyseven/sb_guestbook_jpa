@@ -18,6 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/")
 @Slf4j // Slf4j logger 객체를 클래스에서 사용할 수 있도록 하는 어노테이션
 public class HomeController {
+
+    List<SampleDTO> list;
+
     @GetMapping("/")
     public String index() {
 
@@ -35,7 +38,7 @@ public class HomeController {
 
     @GetMapping("/exModel")
     public ModelAndView exModel(ModelAndView mav) {
-        List<SampleDTO> list = IntStream.rangeClosed(1, 20).asLongStream().mapToObj(i->{
+        this.list = IntStream.rangeClosed(1, 20).asLongStream().mapToObj(i->{
             SampleDTO dto = SampleDTO.builder()
                     .sno(i)
                     .first("First : " + i)
@@ -74,5 +77,13 @@ public class HomeController {
     @GetMapping("/ex2")
     public String ex2() {
         return "/sample/ex2";
+    }
+
+    @GetMapping("/exView")
+    public String exView() {
+
+        log.info("exView~~~~~~~~~~");
+
+        return "/sample/exView";
     }
 }

@@ -67,5 +67,16 @@
             </li>
         </th:block>
     </ul>
+
+    <hr />
+
+    <h5>a태그를 이용하여 링크 걸기</h5>
+    <ul>
+        <th:block th:each="dto : ${list}">
+            <li>
+                <a th:href="@{/exView(sno=${dto.sno})}">[[${dto}]]</a>
+            </li>
+        </th:block>
+    </ul>
 </body>
 </html>
