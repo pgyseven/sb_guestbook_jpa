@@ -15,6 +15,13 @@ public class HomeController {
 
         log.info("HomeController index.html 호출"); // 여기서 보이는 msg는 내가 치는게 아니라 ""안에 입력을 하면 그 내용이 msg임을 VSCode에서 표시해주는 것이다.
 
-        return "index"; // index.html을 찾아서 반환
+        return "index"; // /resources/remplates/index.html을 찾아서 반환
+    }
+
+    @GetMapping("/ex1")
+    public String ex1() {
+
+        log.info("ex1~~~~~~~~");
+        return "/sample/ex1";
     }
 }
