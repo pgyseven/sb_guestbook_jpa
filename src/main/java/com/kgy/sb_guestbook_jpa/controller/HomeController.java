@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kgy.sb_guestbook_jpa.dto.SampleDTO;
 
@@ -32,7 +33,7 @@ public class HomeController {
         return "/sample/ex1";
     }
 
-    @GetMapping("/ex2")
+    @GetMapping("/exModel")
     public ModelAndView exModel(ModelAndView mav) {
         List<SampleDTO> list = IntStream.rangeClosed(1, 20).asLongStream().mapToObj(i->{
             SampleDTO dto = SampleDTO.builder()
@@ -51,5 +52,27 @@ public class HomeController {
         mav.setViewName("/sample/exModel"); // 출력할 view 객체의 이름 : /sample/exModel.html
 
         return mav;
+    }
+
+    @GetMapping("/exInline")
+    public String exInline(RedirectAttributes redirectAttributes) {
+        log.info("exInline!!!!!!!!!!!");
+
+        SampleDTO dto = SampleDTO.builder()
+            .sno(100L)
+            .first("first : 100")
+            .last("last : 100")
+            .regDate(LocalDateTime.now())
+            .build();
+
+        redirectAttributes.addAttribute("result", "success");
+        redirectAttributes.addFlashAttribute("dto", dto);
+
+        return "redirect:/ex2";
+    }
+
+    @GetMapping("/ex2")
+    public String ex2() {
+        return "/sample/ex2";
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 
+<!-- xmlns:th = xml name space 중 thymeleaf 속성 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    <h1>[[${result}]]</h1>
+    <h1>[[${dto}]]</h1>
+    -->
+
+    <!-- 바인딩된 자바 객체를 자바스크립트에서 활용할 때 -->
+    <script th:inline="javascript">
+        // result 는 쿼리 스트링으로 가서 null로 뜬다.
+        let result = [[${result}]];
+        // 바인딩된 자바 객체를 자바스크립트 변수로 처리하면 -> json 포맷의 문자열로 자동 처리 된다.
+        let dto = [[${dto}]];
+
+        console.log(result);
+        console.log(dto);
+    </script>
+</body>
+</html>
