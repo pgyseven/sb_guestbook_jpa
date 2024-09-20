@@ -35,4 +35,19 @@ public class GuestBook extends BaseEntity {
 
     @Column(length = 50, nullable = false)
     private String writer;
+
+    public void changeTitle(String title) {
+        if (title != null) {
+            this.title = title;
+        }
+    }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
+
+    public void changeAll(String title, String content) {
+        changeTitle(title);
+        changeContent(content);
+    }
 }
