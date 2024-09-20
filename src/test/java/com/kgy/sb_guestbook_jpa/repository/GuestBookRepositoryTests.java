@@ -1,5 +1,8 @@
 package com.kgy.sb_guestbook_jpa.repository;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +33,26 @@ public class GuestBookRepositoryTests {
             Assert.notNull(guestBook, "GuestBook ID should not be null -> 테스트 실패");
 
             System.out.println(guestBook.toString());
+        }
+    }
+
+    @Test
+    public void updateTest() {
+        Long gno = 3L;
+        Optional<GuestBook> result = gusetBookRepository.findById(gno);
+
+        if (result.isPresent()) {
+            GuestBook gusetbook = result.get();
+            LocalDateTime beforeModify = gusetbook.getModDate();
+
+            gusetbook.changeTitle("3updated title");
+            gusetbook.changeContent("3updated content");
+
+            // 이 때의 guestbook 객체는 gno(PK)값이 존재하므로 save()에 의해 update문이 수행된다.
+            GuestBook modifyGuestBook = gusetBookRepository.save(gusetbook);
+
+            LocalDateTime afterModify = modifyGuestBook.getModDate();
+            Assert.isTrue(!beforeModify.isBefore(afterModify), "테스트 실패!!!!!!!!!!!");
         }
     }
 }
