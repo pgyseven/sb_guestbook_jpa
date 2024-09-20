@@ -3,6 +3,7 @@ package com.kgy.sb_guestbook_jpa.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
 
 import com.kgy.sb_guestbook_jpa.entity.GuestBook;
 
@@ -24,6 +25,10 @@ public class GuestBookRepositoryTests {
             // 그러므로 아래의 save()에서는 insert문이 수행되고,
             // insert문의 수행 이후에 반환된 guestBook에 PK(gno)값이 들어있는 것을 볼 수 있다.
             guestBook = gusetBookRepository.save(guestBook);
+
+            // Assert(단정문) : 단정문을 사용하여 테스트가 성공 또는 실패인지 직관적으로 명확하게 코딩하도록 한다.
+            Assert.notNull(guestBook, "GuestBook ID should not be null -> 테스트 실패");
+
             System.out.println(guestBook.toString());
         }
     }
