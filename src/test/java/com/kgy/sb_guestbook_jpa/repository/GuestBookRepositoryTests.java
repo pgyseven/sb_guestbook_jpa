@@ -38,21 +38,21 @@ public class GuestBookRepositoryTests {
 
     @Test
     public void updateTest() {
-        Long gno = 3L;
+        Long gno = 4L;
         Optional<GuestBook> result = gusetBookRepository.findById(gno);
 
         if (result.isPresent()) {
             GuestBook gusetbook = result.get();
             LocalDateTime beforeModify = gusetbook.getModDate();
 
-            gusetbook.changeTitle("3updated title");
-            gusetbook.changeContent("3updated content");
+            gusetbook.changeTitle("4updated title");
+            gusetbook.changeContent("4updated content");
 
             // 이 때의 guestbook 객체는 gno(PK)값이 존재하므로 save()에 의해 update문이 수행된다.
             GuestBook modifyGuestBook = gusetBookRepository.save(gusetbook);
 
             LocalDateTime afterModify = modifyGuestBook.getModDate();
-            Assert.isTrue(!beforeModify.isBefore(afterModify), "테스트 실패!!!!!!!!!!!");
+            Assert.isTrue(beforeModify.isBefore(afterModify), "테스트 실패");
         }
     }
 }
