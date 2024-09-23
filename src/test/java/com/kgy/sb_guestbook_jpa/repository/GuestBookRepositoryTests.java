@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
+import com.kgy.sb_guestbook_jpa.dto.PageRequestDTO;
 import com.kgy.sb_guestbook_jpa.entity.GuestBook;
 
 @SpringBootTest
@@ -55,4 +56,6 @@ public class GuestBookRepositoryTests {
             Assert.isTrue(beforeModify.isBefore(afterModify), "테스트 실패");
         }
     }
+
+    
 }
