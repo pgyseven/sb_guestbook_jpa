@@ -18,4 +18,8 @@ public class PageResultDTO<DTO, EN> {
     public PageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
         this.dtoList = result.stream().map(fn).collect(Collectors.toList());
     }
+
+    public PageResultDTO(List<DTO> list) {
+        this.dtoList = list;
+    }
 }
