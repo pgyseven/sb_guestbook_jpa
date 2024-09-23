@@ -22,4 +22,18 @@ public interface GuestBookService {
 
         return entity;
     };
+
+    // GuestBook(Entity)를 GuestBookDTO(DTO)로 변환하는 메소드(default 메소드로 작성)
+    default GuestBookDTO entityToDTO(GuestBook guestBook) {
+        GuestBookDTO guestBookDTO = GuestBookDTO.builder()
+                .gno(guestBook.getGno())
+                .title(guestBook.getTitle())
+                .content(guestBook.getContent())
+                .writer(guestBook.getWriter())
+                .regDate(guestBook.getRegDate())
+                .modDate(guestBook.getModDate())
+                .build();
+
+        return guestBookDTO;
+    }
 } 
