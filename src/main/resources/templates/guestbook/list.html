@@ -6,6 +6,26 @@
     <th:block th:fragment="content">
         <h1>방명록 리스트</h1>
         
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Writer</th>
+                    <th>RegDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="guestBook : ${result.dtoList}">
+                    <td th:text="${guestBook.gno}"></td>
+                    <td th:text="${guestBook.title}"></td>
+                    <td th:text="${guestBook.writer}"></td>
+                    <td>
+                        [[${#temporals.format(guestBook.regDate, 'yyyy/MM/dd hh:mm')}]]
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     
     </th:block>
 </th:block>
