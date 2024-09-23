@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GuestBookController {
 
     @GetMapping("/list")
-    public void listMemos() {
+    public void listAll() {
         log.info("listMemos 컨트롤러~~~~~~~~~~");
         // = return "/guestbook/list";
     } 
