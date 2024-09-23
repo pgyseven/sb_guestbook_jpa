@@ -15,6 +15,7 @@ import lombok.Getter;
 // 자동으로 처리되어야 하는 부분을 또 다른 엔티티 클래스로 만들자
 
 // @MappedSuperclass : 테이블로 생성되지 않고 다른 클래스의 부모 클래스가 되는 Entity Class
+// 아래의 클래스를 상속받은 클래스에서 매핑된다.
 @MappedSuperclass
 @Getter
 @EntityListeners(value={AuditingEntityListener.class})
