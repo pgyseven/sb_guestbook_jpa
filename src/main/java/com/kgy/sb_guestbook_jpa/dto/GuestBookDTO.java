@@ -17,9 +17,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
+
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Data
 public class GuestBookDTO {
     private Long gno;
@@ -27,4 +28,21 @@ public class GuestBookDTO {
     private String content;
     private String writer;
     private LocalDateTime regDate, modDate;
+
+
+    // 기본 생성자
+    protected GuestBookDTO() {}
+
+    // 모든 필드를 받는 생성자
+    protected GuestBookDTO(Long gno, String title, String content, String writer, LocalDateTime regDate, LocalDateTime modDate) {
+        this.gno = gno;
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.regDate = regDate;
+        this.modDate = modDate;
+    }
+
+
+
 }

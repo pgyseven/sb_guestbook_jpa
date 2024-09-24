@@ -16,7 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="guestBook : ${result.dtoList}">
+                <tr th:each="guestBook : ${result.dtoList}"
+                th:onclick="location.href='/guestbook/read?gno=[[${guestBook.gno}]]';">
                     <td th:text="${guestBook.gno}"></td>
                     <td th:text="${guestBook.title}"></td>
                     <td th:text="${guestBook.writer}"></td>
@@ -26,6 +27,12 @@
                 </tr>
             </tbody>
         </table>
+
+        <div class="btns">
+            <button type="button" class="btn btn-info">
+                <a th:href="@{/guestbook/showSaveForm}">New guestBook</a>
+            </button>
+        </div>
 
         <!-- Center-aligned -->
         <ul class="pagination justify-content-center" style="margin:20px 0">
@@ -42,6 +49,14 @@
             </li>
         </ul>
     
+        <script th:inline="javascript">
+            let result = [[${status}]]
+
+            console.log(result);
+            
+
+        </script>
+
     </th:block>
 </th:block>
 </html>

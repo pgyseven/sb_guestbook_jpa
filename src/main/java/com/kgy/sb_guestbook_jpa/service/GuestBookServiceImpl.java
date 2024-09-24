@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -63,6 +64,23 @@ public class GuestBookServiceImpl implements GuestBookService{
         // };
 
         // return new PageResultDTO<>(guestBookDTOList);
+    }
+
+    @Override
+    public GuestBookDTO read(Long gno) {
+        GuestBookDTO guestBookDTO = null;
+
+        Optional<GuestBook> result = guestBookRepository.findById(gno);
+
+        if(result.isPresent()) {
+            GuestBook guestBook = result.get();
+            return
+            
+            guestBookDTO = entityToDTO(guestBook);
+            
+        }
+        return guestBookDTO;
+        
     }
 
 }
