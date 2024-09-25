@@ -1,6 +1,7 @@
 package com.kgy.sb_guestbook_jpa.repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -126,6 +127,30 @@ public class MemoRepositoryTests {
         System.out.println("이전 페이지가 있습니까? " + result.hasPrevious());
         System.out.println("시작 페이지(0번째) 입니까? " + result.isFirst());
         System.out.println("마지막 페이지 입니까? " + result.isLast());
+    }
+
+    @Test
+    public void testFindByMemoTextLike() {
+        List<Memo> list = memoRepository.findByMemoTextLike("더미");
+
+        for(Memo m : list) {
+            System.out.println(m.toString());
+        }
+    }
+
+    @Test
+    public void testfindByMnoIs() {
+        Optional<Memo> memo = memoRepository.findByMnoIs(2L);
+        if(memo.isPresent()){
+            System.out.println(memo.get());
+        }
+
+    }
+
+    @Test
+    public void testgetCountMemo() {
+        int cnt = memoRepository.getCountMemo();
+        System.out.println(cnt);
     }
 }
 
