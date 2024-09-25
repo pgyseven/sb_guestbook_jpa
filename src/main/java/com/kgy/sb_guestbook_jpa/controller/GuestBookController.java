@@ -29,8 +29,14 @@ public class GuestBookController {
     @GetMapping("/list")
     public void listAll(PageRequestDTO pageRequestDTO, Model model) {
         log.info("listAll 컨트롤러~~~~~~~~~~");
+        log.info(pageRequestDTO.toString());
+
+        // if(pageRequestDTO.getSearchType().equals("-1")) {
+        //     pageRequestDTO.setSearchType(null);
+        // }
 
         model.addAttribute("result", guestBookService.getList(pageRequestDTO));
+        model.addAttribute("pageRequestDTO)", pageRequestDTO);
         // = return "/guestbook/list";
     } 
 
